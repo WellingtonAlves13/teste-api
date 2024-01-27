@@ -8,6 +8,7 @@ public class CadastroProdutoDAO {
     public CadastroProdutoDAO(CadastroProdutoEntity produto){
         BeanUtils.copyProperties(produto, this);
     }
+
     private Long id;
     private String nome;
     private String descricao;

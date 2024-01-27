@@ -2,7 +2,9 @@ package com.example.treino.controller;
 
 import com.example.treino.dao.CadastroProdutoDAO;
 import com.example.treino.entity.CadastroProdutoEntity;
+import com.example.treino.repository.CadastroProdutoRepository;
 import com.example.treino.service.CadastroProdutoService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import jakarta.validation.Valid;
@@ -34,6 +36,7 @@ public class CadastroProdutoController {
     public void cadastrarProdutos(@RequestBody @Valid CadastroProdutoDAO produto){
         cadastroProdutoService.cadastrarProdutos(produto);
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         cadastroProdutoService.excluirProduto(id);

@@ -1,5 +1,7 @@
 package com.example.treino.entity;
 import com.example.treino.dao.CadastroProdutoDAO;
+import com.example.treino.dto.ProdutoDTO;
+import com.example.treino.record.AlterarProduto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import org.springframework.beans.BeanUtils;
@@ -26,12 +28,33 @@ public class CadastroProdutoEntity {
     public CadastroProdutoEntity(CadastroProdutoDAO produto){
         BeanUtils.copyProperties(produto, this);
     }
+    public CadastroProdutoEntity(ProdutoDTO dados){
+        this.nome = dados.nome();
+        this.marca = dados.marca();
+        this.descricao = dados.descricao();
+        this.preco = dados.preco();
+    }
 
     public CadastroProdutoEntity() {
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void atualizarInformacoes(AlterarProduto dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+        if (dados.descricao() != null) {
+            this.descricao = dados.descricao();
+        }
+        if (dados.preco() != null) {
+            this.preco = dados.preco();
+        }
+        if (dados.marca() != null) {
+            this.marca = dados.marca();
+        }
     }
 
 
